@@ -18,7 +18,7 @@ Since the project includes 3 tools, you should run all of them
 docker-compose up -d
 
 # run docker swarm
-docker swarm
+docker swarm init
 
 # run kubernetes with minikube
 minikube start
@@ -29,3 +29,16 @@ kubectl apply myproject.yaml
 ### Authors
 
 * **Gaydukov Dmitiry** - *Take a look* - [How to become a Senior Javascript Developer](https://github.com/dgaydukov/how-to-become-a-senior-js-developer)
+
+
+
+### Plan
+
+1. Create image with backend (simple to-do)
+2. Create image with frontend (simple to-do)
+3. Create docker-compose file with deployment
+4. Create swarm deployment
+5. Run simple nginx image with minikube and ingress
+https://medium.com/@Oskarr3/setting-up-ingress-on-minikube-6ae825e98f82
+https://stackoverflow.com/questions/53253793/kubernetes-ingress-with-minikube
+https://stackoverflow.com/questions/51243717/no-ingress-address-on-minikube-kubernetes-cluster-with-nginx-ingress-controller
