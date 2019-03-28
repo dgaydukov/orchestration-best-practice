@@ -22,7 +22,7 @@ docker swarm init
 
 # run kubernetes with minikube
 minikube start
-kubectl apply myproject.yaml
+kubectl apply kuber.yaml
 ```
 
 
