@@ -4,7 +4,7 @@ export class addTableNotes1554801587318 implements MigrationInterface {
 
     async up(queryRunner: QueryRunner): Promise<any> {
         await queryRunner.createTable(new Table({
-            name: 'notes',
+            name: 'note',
             columns: [
                 {
                     name: 'id',
@@ -30,7 +30,7 @@ export class addTableNotes1554801587318 implements MigrationInterface {
     }
 
     async down(queryRunner: QueryRunner): Promise<any> {
-        await queryRunner.dropTable('notes');
+        await queryRunner.dropTable('note');
     }
 
 }
