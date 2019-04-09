@@ -17,11 +17,10 @@ export default class NoteRepo {
         return this.repo.findOne(id);
     }
 
-    async insert(body: any){
-        return this.repo.findOne(id);
+    async insert(load: Note){
     }
 
-    async update(id: string, body){
+    async update(id: string, load: Note){
         return this.repo.findOne(id);
     }
 

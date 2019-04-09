@@ -1,4 +1,4 @@
-import { Entity, Column, Index, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, Index, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 @Entity()
 export default class Note {
@@ -13,5 +13,5 @@ export default class Note {
     desc: string;
 
     @Column()
-    date: string;
+    timestamp: string;
 }

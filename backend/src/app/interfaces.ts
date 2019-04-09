@@ -21,3 +21,8 @@ export interface IUser {
     firstname: string;
     lastname: string;
 }
+
+export interface Note {
+    title: string;
+    desc: string;
+}

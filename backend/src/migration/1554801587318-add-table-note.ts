@@ -22,8 +22,8 @@ export class addTableNotes1554801587318 implements MigrationInterface {
                     type: 'varchar',
                 },
                 {
-                    name: 'date',
-                    type: 'date',
+                    name: 'timestamp',
+                    type: 'varchar',
                 },
             ],
         }));
