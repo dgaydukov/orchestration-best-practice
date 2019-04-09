@@ -1,6 +1,6 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
-import AuthRepo from '../repo/authRepo';
+import NoteRepo from '../repo/noteRepo';
 
 const routerOpts: Router.IRouterOptions = {
   prefix: '/note',
@@ -8,19 +8,29 @@ const routerOpts: Router.IRouterOptions = {
 
 const router: Router = new Router(routerOpts);
 
-router.post('/signup', async (ctx: Koa.Context) => {
-  const repo = new AuthRepo();
-  ctx.body = await repo.signUp(ctx.request.body, ctx.request.origin);
+router.get('/', async (ctx: Koa.Context) => {
+  const repo = new NoteRepo();
+  ctx.body = await repo.getAll();
 });
 
-router.post('/signin', async (ctx: Koa.Context) => {
-  const repo = new AuthRepo();
-  ctx.body = await repo.signIn(ctx.request.body.username, ctx.request.body.password);
+router.get('/:id', async (ctx: Koa.Context) => {
+  const repo = new NoteRepo();
+  ctx.body = await repo.getById(ctx.params.id);
 });
 
-router.post('/verify/:token', async (ctx: Koa.Context) => {
-  const repo = new AuthRepo();
-  ctx.body = await repo.verify(ctx.params.token);
+router.post('/', async (ctx: Koa.Context) => {
+  const repo = new NoteRepo();
+  ctx.body = await repo.create(ctx.request.body);
+});
+
+router.put('/:id', async (ctx: Koa.Context) => {
+  const repo = new NoteRepo();
+  ctx.body = await repo.update(ctx.params.id, ctx.request.body);
+});
+
+router.delete('/:id', async (ctx: Koa.Context) => {
+  const repo = new NoteRepo();
+  ctx.body = await repo.delete(ctx.params.id);
 });
 
 export default router;

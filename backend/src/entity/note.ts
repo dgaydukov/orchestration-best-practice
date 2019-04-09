@@ -3,6 +3,10 @@ import { Entity, Column, Index, PrimaryGeneratedColumn, Timestamp } from "typeor
 @Entity()
 export default class Note {
 
+    constructor() {
+        this.timestamp = (+new Date()).toString();
+    }
+
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
