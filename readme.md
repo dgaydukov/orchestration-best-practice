@@ -8,6 +8,7 @@
 ### Description
 
 In this project, I'm going to show container orchestratiton with docker compose for local development, docker swarm for simple projects and kubernetes for production.
+Here we have a simple app to manage notes. So you have `title`, `desc`, `date`. You can add, modify and delete notes.
 
 
 ### Installation
