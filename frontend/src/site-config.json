@@ -1,0 +1,5 @@
+{
+    "baseURL": "https://jsonplaceholder.typicode.com/",
+    "cookieUserId": "userId",
+    "cookieAuthToken": "accessToken"
+}
