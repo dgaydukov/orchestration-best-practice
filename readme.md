@@ -35,7 +35,7 @@ kubectl apply kuber.yaml
 
 ### Plan
 
-1. Create image with backend (simple to-do)
+1. Dockerize react-quickstart
 2. Create image with frontend (simple to-do)
 3. Create docker-compose file with deployment
 4. Create swarm deployment
