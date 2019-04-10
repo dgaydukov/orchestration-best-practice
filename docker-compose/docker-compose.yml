@@ -24,12 +24,12 @@ services:
       - db
 
   backend:
-    build: .
+    build: ../backend
     restart: always
     ports: 
-      - ${EXTERNAL_APP_PORT}:${APP_PORT}
+      - ${EXTERNAL_BACKEND_APP_PORT}:${BACKEND_APP_PORT}
     environment:
-      - APP_PORT=${APP_PORT}
+      - APP_PORT=${BACKEND_APP_PORT}
       - DB_HOST=db
       - DB_PORT=5432
       - DB_NAME=${DB_NAME}
@@ -39,16 +39,12 @@ services:
       - db
 
   # frontend:
-  #   build: .
+  #   build: ../frontend
   #   restart: always
   #   ports: 
-  #     - ${COMPOSE_APP_PORT}:${APP_PORT}
+  #     - ${EXTERNAL_FRONTEND_APP_PORT}:${FRONTEND_APP_PORT}
   #   environment:
-  #     - APP_PORT=${APP_PORT}
-  #     - DB_HOST=db
-  #     - DB_PORT=5432
-  #     - DB_NAME=${DB_NAME}
-  #     - DB_USERNAME=${DB_USERNAME}
-  #     - DB_PASSWORD=${DB_PASSWORD}
+  #     - APP_PORT=${FRONTEND_APP_PORT}
+  #     - BACKEND_URL=http://localhost:${EXTERNAL_BACKEND_APP_PORT}
   #   depends_on: 
   #     - backend
