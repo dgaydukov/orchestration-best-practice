@@ -110,3 +110,179 @@ paths:
               status:
                 type: string
                 description: return status 'verified'
+
+
+
+  /note:
+    get:
+      tags:
+      - "Note"
+      summary: "Get all notes"
+      description: "Get all notes"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: List of Note objects
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: UUID of the note
+                title:
+                  type: string
+                  description: Title of the note
+                desc:
+                  type: string
+                  description: Description of the note
+                timestamp:
+                  type: string
+                  description: Date and time when note was created
+    post:
+      tags:
+      - "Note"
+      summary: "Create new note"
+      description: "Create new note"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: body
+          name: note
+          description: The note to create.
+          schema:
+            type: object
+            required:
+              - title
+              - desc
+            properties:
+              title:
+                type: string
+              desc:
+                type: string
+      responses:
+        200:
+          description: Newly created note
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: UUID of the note
+              title:
+                type: string
+                description: Title of the note
+              desc:
+                type: string
+                description: Description of the note
+              timestamp:
+                type: string
+                description: Date and time when note was created
+
+  /note/{id}:
+    put:
+      tags:
+      - "Note"
+      summary: "Update an existed note"
+      description: "Update an existed note"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+        - in: body
+          name: note
+          description: The note to create.
+          schema:
+            type: object
+            required:
+              - title
+              - desc
+            properties:
+              title:
+                type: string
+              desc:
+                type: string
+      responses:
+        200:
+          description: Updated note
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: UUID of the note
+              title:
+                type: string
+                description: Title of the note
+              desc:
+                type: string
+                description: Description of the note
+              timestamp:
+                type: string
+                description: Date and time when note was created
+    get:
+      tags:
+      - "Note"
+      summary: "Verify registered user"
+      description: "Verify registered user"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+      responses:
+        200:
+          description: Requested note
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: UUID of the note
+              title:
+                type: string
+                description: Title of the note
+              desc:
+                type: string
+                description: Description of the note
+              timestamp:
+                type: string
+                description: Date and time when note was created
+    delete:
+      tags:
+      - "Note"
+      summary: "Verify registered user"
+      description: "Verify registered user"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+      responses:
+        200:
+          description: UUID of deleted note
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: UUID of the note
