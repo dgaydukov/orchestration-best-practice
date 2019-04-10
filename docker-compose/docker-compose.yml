@@ -23,20 +23,20 @@ services:
     depends_on: 
       - db
 
-  # backend:
-  #   build: .
-  #   restart: always
-  #   ports: 
-  #     - ${COMPOSE_APP_PORT}:${APP_PORT}
-  #   environment:
-  #     - APP_PORT=${APP_PORT}
-  #     - DB_HOST=db
-  #     - DB_PORT=5432
-  #     - DB_NAME=${DB_NAME}
-  #     - DB_USERNAME=${DB_USERNAME}
-  #     - DB_PASSWORD=${DB_PASSWORD}
-  #   depends_on: 
-  #     - db
+  backend:
+    build: .
+    restart: always
+    ports: 
+      - ${EXTERNAL_APP_PORT}:${APP_PORT}
+    environment:
+      - APP_PORT=${APP_PORT}
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+    depends_on: 
+      - db
 
   # frontend:
   #   build: .
