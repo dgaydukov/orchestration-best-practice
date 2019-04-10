@@ -5,6 +5,7 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import authRouter from '../api/auth.controller';
+import noteRouter from '../api/note.controller';
 import { API_VERSION } from '../env';
 
 const router = new Router({
@@ -16,6 +17,7 @@ router.get('/', async (ctx: Koa.Context) => {
 });
 
 router.use(authRouter.routes(), authRouter.allowedMethods());
+router.use(noteRouter.routes(), noteRouter.allowedMethods());
 
 
 export const RouterMiddleware = router.routes();

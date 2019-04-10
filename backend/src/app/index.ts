@@ -20,7 +20,8 @@ app.use(bodyParser());
 app.use(StaticServerMiddleware);
 app.use(ErrorMiddleware);
 app.use(SwaggerMiddleware);
-app.use(AuthCheckMiddleware);
+// switch off auth for testing purpose.
+// app.use(AuthCheckMiddleware);
 app.use(RouterMiddleware);
 
 /**
