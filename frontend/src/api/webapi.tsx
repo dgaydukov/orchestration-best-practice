@@ -48,18 +48,21 @@ export const getAllNotes = () => {
     }
 }
 
-export const createNote = () => {
-    
+export const createNote = async (body) => {
+    return axios.post(`${config.baseURL}/note`, body);
 }
 
 export const getNote = (id: string) => {
-    
+    return async (dispatch) => {
+        const response = await axios.get(`${config.baseURL}/note/${id}`);
+        dispatch(ac.getOneNote(response.data));
+    }
 }
 
-export const updateNote = (id: string, body) => {
-    
+export const updateNote = async (id: string, body) => {
+    return axios.put(`${config.baseURL}/note/${id}`, body);
 }
 
-export const deleteNote = (id: string) => {
-    
+export const deleteNote = async (id: string) => {
+    return axios.delete(`${config.baseURL}/note/${id}`);
 }

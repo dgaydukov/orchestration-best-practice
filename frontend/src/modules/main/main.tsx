@@ -13,7 +13,6 @@ class Main extends React.PureComponent<IProps, any>{
         this.props.getAllNotes()
     }
 
-
     render(){
         return(
             <div>
