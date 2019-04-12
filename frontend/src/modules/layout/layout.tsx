@@ -15,8 +15,10 @@ import NotFound from "@modules/404/notfound"
 
 interface IProps {
     user: any;
+    notes: any,
     getUser: Function;
     getCatalog: Function;
+    getAllNotes: Function;
 }
 
 const Content = (props: IProps) => {
