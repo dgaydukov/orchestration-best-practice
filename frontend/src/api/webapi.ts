@@ -8,6 +8,8 @@
 
 //import axios from "axios";
 import * as ac from "@redux/action-creators";
+import axios from 'axios';
+import config from '@root/site-config';
 
 
 export const getUser = ()=>{
@@ -32,4 +34,32 @@ export const getCatalog = ()=>{
             ]));
         }, 2000)
     }
-} 
+}
+
+
+/**
+ * Notes management functions
+ */
+
+export const getAllNotes = () => {
+    return async (dispatch) => {
+        const data = await axios.get(`${config.baseURL}/`);
+        dispatch(ac.getCatalogSuccess(data));
+    }
+}
+
+export const createNote = () => {
+    
+}
+
+export const getNote = (id: string) => {
+    
+}
+
+export const updateNote = (id: string, body) => {
+    
+}
+
+export const deleteNote = (id: string) => {
+    
+}

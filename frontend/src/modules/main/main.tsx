@@ -2,9 +2,13 @@
 
 
 import * as React from "react";
-import config from '@root/site-config';
 
 class Main extends React.PureComponent{
+    componentDidMount(){
+
+    }
+
+    
     render(){
         return(
             <div>
