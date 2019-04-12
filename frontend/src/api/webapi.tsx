@@ -42,11 +42,9 @@ export const getCatalog = ()=>{
  */
 
 export const getAllNotes = () => {
-    console.log('call getAllNotes')
     return async (dispatch) => {
-        const data = await axios.get(`${config.baseURL}/note`);
-        console.log(data)
-        dispatch(ac.getAllNotes(data));
+        const response = await axios.get(`${config.baseURL}/note`);
+        dispatch(ac.getAllNotes(response.data));
     }
 }
 

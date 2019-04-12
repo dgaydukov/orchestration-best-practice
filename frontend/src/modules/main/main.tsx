@@ -15,12 +15,18 @@ class Main extends React.PureComponent<IProps, any>{
 
 
     render(){
-        console.log(this.props.notes)
         return(
             <div>
                 <h1>Notes App</h1>
                 <div>
                     All notes
+                    <ul>
+                    {this.props.notes.map((item: any, i: number)=>{
+                        return (
+                            <li key={i}>id: {item.id}, title: {item.title}, desc: {item.desc}</li>
+                        )
+                    })}
+                    </ul>
                 </div>
                 <div>
                     Add new note
