@@ -11,10 +11,11 @@ module.exports = {
             '@redux': resolve(__dirname, '../../src/redux'),
             '@modules': resolve(__dirname, '../../src/modules'),
             '@api': resolve(__dirname, '../../src/api'),
-        }
+        },
+        extensions: ['.ts', '.tsx', '.js', '.json']
     },
     entry: {
-        app: [resolve(__dirname, '../../src') + '/app.js'],
+        app: [resolve(__dirname, '../../src') + '/app.tsx'],
         vendor: [
             'babel-polyfill',
             'react',
@@ -32,17 +33,17 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.tsx$/,
                 include: resolve(__dirname, '../../src'),
-                loader: "babel-loader",
-                query: {
-                    presets: ['es2015', 'react'],
-                    plugins: [
-                        "babel-plugin-transform-function-bind",
-                        "babel-plugin-transform-object-rest-spread",
-                        "transform-async-to-generator",
-                    ]
-                }
+                loader: "ts-loader",
+                // query: {
+                //     presets: ['es2015', 'react'],
+                //     plugins: [
+                //         "babel-plugin-transform-function-bind",
+                //         "babel-plugin-transform-object-rest-spread",
+                //         "transform-async-to-generator",
+                //     ]
+                // }
             },
             {
                 test: /\.css/,
@@ -53,7 +54,4 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin("../../build/css/bundle.css"),
     ],
-    externals: {
-        'site-config': JSON.stringify(require('@src/site-config.json'))
-    }
 };

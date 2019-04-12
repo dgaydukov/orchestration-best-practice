@@ -4,12 +4,15 @@
 * Header component
  */
 
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from "react";
 import {Link} from 'react-router-dom';
-import s from "@modules/layout/header/header.css";
+const s = require("@modules/layout/header/header.css");
 
-class Header extends PureComponent{
+interface IProps {
+    user: any;
+}
+
+class Header extends React.PureComponent<IProps, any>{
     constructor(props){
         super(props);
     }
@@ -26,10 +29,5 @@ class Header extends PureComponent{
         )
     }
 }
-
-
-Header.propTypes = {
-    user: PropTypes.object
-};
 
 export default Header

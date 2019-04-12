@@ -1,8 +1,10 @@
 # React QuickStart
 
+
 ## Content
 * [Description](#description)
 * [Installation](#installation)
+* [Env variables](#env-variables)
 * [Built With](#built-with)
 * [Project Structure](#project-structure)
 * [How to work](#how-to-work)
@@ -13,7 +15,7 @@
 
 ### Description
 
-My own React QuickStart project for fast development of new apps.
+My own React QuickStart project for fast development of new apps. The project was recently rewritten to typescript.
 
 ### Installation
 
@@ -25,8 +27,26 @@ In order to install run following steps:
 * Install ```npm i```
 * Run and enjoy ```npm start```
 
+You can also this app as docker container
+```shell
+cp .env.tpl .env
+docker-compose up -d --build
+```
+
 In case you want to run webpack server then `npm run webpack`
 
+### Env variables
+
+Since you can run this application both with `docker-compose` and locally with `npm start`, you have 2 ways of passing env variables to this app:
+* Local development - you just add default values to `./src/site-config.js`
+* Container running - you add all your env variales to `.env` file. From there they will be picked up by docker-compose, when you run `docker-compose up`.
+
+With local development everything is clear, you just type values to the file. How does container values are passed?
+Everything is straightforward, and takes a few steps
+* Pass variables to `docker-compose.yaml` file. Variables are takes from `.env` file
+* This variables then passed to docker container entrypoint
+* In entrypoint, we run `env-variables.sh` file, that creates `env-variables.js` file
+* We use values from `env-variables.js` in `src/site-config.js` file
 
 ### Built With
 
@@ -120,4 +140,3 @@ is my explanation how it works in `React`.
 ### Authors
 
 * **Gaydukov Dmitiry** - *Take a look* - [How to become a Senior Javascript Developer](https://github.com/dgaydukov/how-to-become-a-senior-js-developer)
-

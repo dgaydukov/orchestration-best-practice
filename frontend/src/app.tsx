@@ -4,12 +4,14 @@
  * React App entry point
  */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from "react";
+import * as DOM from "react-dom";
 import ReduxRouter from "@root/router";
+import config from '@root/site-config';
 
 window.onload = () => {
-    ReactDOM.render(
+    console.log(`React version: ${React.version}, env: ${config.env}`);
+    DOM.render(
         <ReduxRouter/>,
         document.getElementById('main')
     );
@@ -19,12 +21,11 @@ window.onload = () => {
  * Page reload after file changes, with SSE & node.js express server
  * https://www.npmjs.com/package/server-sent-events
  */
-if("NODE" == process.env.WEB_SERVER){
+if("NODE" === process.env.WEB_SERVER){
     const sendevent = require('sendevent');
-    sendevent('/eventstream', function(event) {
+    sendevent('/eventstream', event => {
         if(event.reload){
             window.location.reload();
         }
     });
 }
-

@@ -4,7 +4,7 @@
  *  WebApp layout component
  */
 
-import React from 'react'
+import * as React from "react";
 import {Switch, Route} from 'react-router-dom'
 import Header from "@modules/layout/header/header"
 import Footer from "@modules/layout/footer/footer"
@@ -13,7 +13,13 @@ import Main from "@modules/main/main"
 import Profile from "@modules/profile/profile"
 import NotFound from "@modules/404/notfound"
 
-const Content = (props) => {
+interface IProps {
+    user: any;
+    getUser: Function;
+    getCatalog: Function;
+}
+
+const Content = (props: IProps) => {
     return(
         <Switch>
             <Route exact path="/" component={Main}/>
@@ -31,7 +37,7 @@ const Content = (props) => {
     )
 }
 
-export default class Layout extends React.Component{
+export default class Layout extends React.Component<IProps, any>{
     componentDidMount(){
         this.props.getUser()
         this.props.getCatalog()

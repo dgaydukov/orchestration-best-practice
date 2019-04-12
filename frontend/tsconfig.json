@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "dist",
+    "rootDir": ".",
+    "baseUrl": "src",
+    "paths": {
+      "@root/*": ["/src/*"],
+      "@src/*": ["/src/*"],
+    },
+    "jsx": "react",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "npm",
+  ]
+}
