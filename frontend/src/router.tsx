@@ -34,6 +34,7 @@ const Router = (props) => {
 const mapStateToProps = store => (
     {
         user: store.userState.user,
+        notes: store.noteState.notes,
         catalog: store.catalogState.catalog,
         filteredCatalog: ()=>{
             store.catalogState.catalog.filter(k=>k.price > 100)
@@ -49,6 +50,9 @@ const mapDispatchToProps = dispatch => (
         },
         getCatalog: ()=>{
             dispatch(api.getCatalog())
+        },
+        getAllNotes: ()=>{
+            dispatch(api.getAllNotes())
         },
     }
 )

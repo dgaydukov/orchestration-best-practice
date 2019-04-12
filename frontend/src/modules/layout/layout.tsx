@@ -22,7 +22,11 @@ interface IProps {
 const Content = (props: IProps) => {
     return(
         <Switch>
-            <Route exact path="/" component={Main}/>
+            <Route exact path="/" render={(routeProps)=>{
+                return(
+                    <Main {...props} {...routeProps}/>
+                )
+            }}/>
             <Route path="/catalog" component={Catalog}/>
             <Route path="/profile" render={(routeProps)=>{
                 return(

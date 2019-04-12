@@ -2,16 +2,20 @@
 
 
 import * as React from "react";
-import {getAllNotes} from "@root/api/webapi"
 
-class Main extends React.PureComponent{
+interface IProps {
+    getAllNotes: Function;
+    notes: [],
+}
+
+class Main extends React.PureComponent<IProps, any>{
     componentDidMount(){
-        getAllNotes();
+        this.props.getAllNotes()
     }
 
 
     render(){
-        console.log(this.props)
+        console.log(this.props.notes)
         return(
             <div>
                 <h1>Notes App</h1>
