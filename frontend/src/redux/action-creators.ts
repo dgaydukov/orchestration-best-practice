@@ -20,3 +20,20 @@ export function getCatalogSuccess(data) {
         data
     }
 }
+
+
+
+export function getAllNotes(data) {
+    return{
+        type: types.GET_ALL_NOTES_SUCCESS,
+        data
+    }
+}
+
+
+export function getOneNote(data) {
+    return{
+        type: types.GET_ONE_NOTE_SUCCESS,
+        data
+    }
+}
