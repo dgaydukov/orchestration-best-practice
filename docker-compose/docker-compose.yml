@@ -30,6 +30,7 @@ services:
       - ${EXTERNAL_BACKEND_APP_PORT}:${BACKEND_APP_PORT}
     environment:
       - APP_PORT=${BACKEND_APP_PORT}
+      - API_VERSION=${API_VERSION}
       - DB_HOST=db
       - DB_PORT=5432
       - DB_NAME=${DB_NAME}
