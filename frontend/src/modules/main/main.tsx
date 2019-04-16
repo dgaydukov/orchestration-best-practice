@@ -2,7 +2,7 @@
 
 
 import * as React from "react";
-import {createNote} from '../../api/webapi';
+import {createNote, deleteNote} from '../../api/webapi';
 
 interface IProps {
     getAllNotes: Function;
@@ -35,13 +35,26 @@ class Main extends React.PureComponent<IProps>{
                 <h1>Notes App</h1>
                 <div>
                     All notes
-                    <ul>
-                    {this.props.notes.map((item: any, i: number)=>{
-                        return (
-                            <li key={i}>id: {item.id}, title: {item.title}, desc: {item.desc}</li>
-                        )
-                    })}
-                    </ul>
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Desc</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tbody>
+                        {this.props.notes.map((item: any, i: number)=>{
+                            return (
+                                <tr key={i}>
+                                    <td>{item.id}</td>
+                                    <td>{item.title}</td>
+                                    <td>{item.desc}</td>
+                                    <td><span style={{color: "red", cursor: "pointer"}} title="delete" onClick={this.delete.bind(this, item.id)}>x</span></td>
+                                </tr>
+                            )
+                        })}
+                        </tbody>
+                    </table>
                 </div>
                 <div>
                     Add new note
@@ -54,10 +67,21 @@ class Main extends React.PureComponent<IProps>{
     }
 
     async addNote(){
-        const note = await createNote(this.state)
-        if(note.status === 200){
-            alert(`Added new item`);
+        const request = await createNote(this.state)
+        if(request.status === 200){
+            alert(`Added new item with id: ${request.data.id}`);
             this.props.getAllNotes();
+        }
+    }
+
+    async delete(id: string){
+        const del = confirm('Are you sure you want to delete?');
+        if(del){
+            const request = await deleteNote(id);
+            if(request.status === 200){
+                alert(`Deleted item with id: ${id}`);
+                this.props.getAllNotes();
+            }
         }
     }
 }
