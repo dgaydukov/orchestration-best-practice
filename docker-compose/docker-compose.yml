@@ -39,13 +39,13 @@ services:
     depends_on: 
       - db
 
-  # frontend:
-  #   build: ../frontend
-  #   restart: always
-  #   ports: 
-  #     - ${EXTERNAL_FRONTEND_APP_PORT}:${FRONTEND_APP_PORT}
-  #   environment:
-  #     - APP_PORT=${FRONTEND_APP_PORT}
-  #     - BACKEND_URL=http://localhost:${EXTERNAL_BACKEND_APP_PORT}
-  #   depends_on: 
-  #     - backend
+  frontend:
+    build: ../frontend
+    restart: always
+    ports: 
+      - ${EXTERNAL_FRONTEND_APP_PORT}:${NGINX_PORT}
+    environment:
+      - ENV_TYPE=${ENV_TYPE}
+      - API_BASE_URL=${API_BASE_URL}
+      - COOKIE_USER_ID_NAME=${COOKIE_USER_ID_NAME}
+      - COOKIE_AUTH_TOKEN_NAME=${COOKIE_AUTH_TOKEN_NAME}
