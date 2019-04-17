@@ -35,11 +35,8 @@ kubectl apply kuber.yaml
 
 ### Plan
 
-1. Dockerize react-quickstart
-2. Create image with frontend (simple to-do)
-3. Create docker-compose file with deployment
-4. Create swarm deployment
-5. Run simple nginx image with minikube and ingress
+1. Create swarm deployment
+2. Run simple nginx image with minikube and ingress
 https://medium.com/@Oskarr3/setting-up-ingress-on-minikube-6ae825e98f82
 https://stackoverflow.com/questions/53253793/kubernetes-ingress-with-minikube
 https://stackoverflow.com/questions/51243717/no-ingress-address-on-minikube-kubernetes-cluster-with-nginx-ingress-controller
