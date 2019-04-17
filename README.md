@@ -2,6 +2,7 @@
 
 ## Content
 * [Description](#description)
+* [Built images](#built-images)
 * [Types of orchestration](#types-of-orchestration)
 * [Authors](#authors)
 
@@ -10,6 +11,15 @@
 In this project, I'm going to show container orchestratiton with docker compose for local development, docker swarm for simple projects and kubernetes for production.
 Here we have a simple app to manage notes. So you have `title`, `desc`, `date`. You can add, modify and delete notes.
 This project assumes, that you have already `docker` installed.
+
+### Built images
+
+`docker-compose` can work without images, you just pass directory and it builds image from source code. For swarm and kubernetes we need to set images from docker registry. We can push our images to [public repository](https://hub.docker.com/).
+Build and push backend repo
+```shell
+cd backend/
+docker build . -t orchestration-best-practice/backend
+```
 
 ### Types of orchestration
 
