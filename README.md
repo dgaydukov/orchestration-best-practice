@@ -62,7 +62,7 @@ cd docker-swarm
 docker swarm init
 
 # dedploy services
-docker stack up -c docker-swarm.yml note
+docker stack up -c docker-compose.swarm.yml noteapp
 
 # view created services
 docker service ls
