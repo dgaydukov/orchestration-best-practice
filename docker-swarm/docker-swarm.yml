@@ -11,7 +11,9 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
     volumes:
-      - ./db_data/data:/var/lib/postgresql/data # add additional subdirectory, so docker build can work correctly
+      - ./db_data:/var/lib/postgresql/data
+    deploy:
+      replicas: 1
 
   adminer:
     image: adminer
@@ -24,7 +26,7 @@ services:
       - db
 
   backend:
-    build: ../backend
+    image: dgaydukov/backend
     restart: always
     ports: 
       - 21556:3000
@@ -40,7 +42,7 @@ services:
       - db
 
   frontend:
-    build: ../frontend
+    image: dgaydukov/frontend
     restart: always
     ports: 
       - 18577:80

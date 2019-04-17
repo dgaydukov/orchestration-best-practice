@@ -63,6 +63,9 @@ docker swarm init
 
 # dedploy services
 docker stack up -c docker-swarm.yml note
+
+# view created services
+docker service ls
 ```
 
 ###### Kubernetes
