@@ -2,22 +2,25 @@
 
 
 import * as React from "react";
-import {createNote, deleteNote} from '../../api/webapi';
+import {createNote, deleteNote, updateNote} from '../../api/webapi';
 
 interface IProps {
     getAllNotes: Function;
     notes: [],
 }
 
-class Main extends React.PureComponent<IProps>{
+class Main extends React.PureComponent<IProps, any, any>{
     constructor(props){
         super(props);
 
         this.state = {
+            id: null,
             title: "",
             desc: "",
         }
-        this.addNote = this.addNote.bind(this);
+        this.create = this.create.bind(this);
+        this.update = this.update.bind(this);
+        this.delete = this.delete.bind(this);
         this.changeState = this.changeState.bind(this);
     }
     componentDidMount(){
@@ -36,12 +39,14 @@ class Main extends React.PureComponent<IProps>{
                 <div>
                     All notes
                     <table>
-                        <tr>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Desc</th>
-                            <th>Actions</th>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Desc</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
                         <tbody>
                         {this.props.notes.map((item: any, i: number)=>{
                             return (
@@ -49,7 +54,10 @@ class Main extends React.PureComponent<IProps>{
                                     <td>{item.id}</td>
                                     <td>{item.title}</td>
                                     <td>{item.desc}</td>
-                                    <td><span style={{color: "red", cursor: "pointer"}} title="delete" onClick={this.delete.bind(this, item.id)}>x</span></td>
+                                    <td>
+                                        <span style={{color: "red", cursor: "pointer"}} title="delete" onClick={this.delete.bind(this, item.id)}>x</span>
+                                        <span style={{marginLeft: "10px", cursor: "pointer"}} title="update" onClick={this.update.bind(this, item.id)}>++</span>
+                                    </td>
                                 </tr>
                             )
                         })}
@@ -57,19 +65,35 @@ class Main extends React.PureComponent<IProps>{
                     </table>
                 </div>
                 <div>
-                    Add new note
-                    <div><label>Title: <input type="text" name="title" onChange={this.changeState}/></label></div>
-                    <div><label>Desc: <input type="text" name="desc" onChange={this.changeState}/></label></div>
-                    <div><label><button onClick={this.addNote}>add</button></label></div>
+                    <h3>{this.state.id ? `Edit note with id: ${this.state.id}` : "Add new note"}</h3>
+                    <div><label>Title: <input type="text" name="title" onChange={this.changeState} defaultValue={this.state.title}/></label></div>
+                    <div><label>Desc: <input type="text" name="desc" onChange={this.changeState} defaultValue={this.state.desc}/></label></div>
+                    <div><label><button onClick={this.create}>save</button></label></div>
                 </div>
             </div>
         )
     }
 
-    async addNote(){
-        const request = await createNote(this.state)
+    async update(id: string){
+        const state = this.props.notes.find(k=>k.id===id);
+        this.setState(state);
+    }
+
+    async create(){
+        let request;
+        if(this.state.id){
+            request = await updateNote(this.state.id, this.state);
+        }
+        else{
+            request = await createNote(this.state)
+        }
         if(request.status === 200){
-            alert(`Added new item with id: ${request.data.id}`);
+            alert(`Saved item with id: ${request.data.id}`);
+            this.setState({
+                id: null,
+                title: "",
+                desc: "",
+            });
             this.props.getAllNotes();
         }
     }
