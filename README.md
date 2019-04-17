@@ -45,7 +45,8 @@ In this project we will take a look at 3 most common types of container orchestr
 
 ###### Docker compose
 
-This is the most simple way of orchestration. You just put all your images in one file and run them.
+This is the most simple way of orchestration. You just put all your images in one file and run them. It's main use case is development or in testing. In these 2 cases you don't need high availability, replicase, ingress and so on. 
+You need a simple instrument to run all container and work with them, or test them. So my verdict is to use `docker-compose` only if you are developer, or for testing purpose. For example when you arun `ci/cd pipeline` you can create an instance of your app with `docker-compose` and run tests against it.
 
 ```shell
 cd docker-compose
@@ -55,7 +56,9 @@ docker-compose up -d --build
 
 ###### Docker swarm
 
-At first we have to convert your docker insto swarm mode.
+Swarm is the orchestration tool for docker. It's very simple to use, especially if you are familiar with `docker` and `docker-compose`. You can run swarm almost the same way you run `docker-compose`, and even their config files look similar.
+But if you take a closer look, you will notice that `swarm` add new functionality to configs. First of all you can't build swarm app. You need to have images in docker hub. Second you can set-up replicas (for high availability).
+
 ```shell
 cd docker-swarm
 # init swarm mode
@@ -81,8 +84,7 @@ kubectl apply ./kubernetes/config.yaml
 
 ### Plan
 
-1. Create swarm deployment
-2. Run simple nginx image with minikube and ingress
+1. Run simple nginx image with minikube and ingress
 https://medium.com/@Oskarr3/setting-up-ingress-on-minikube-6ae825e98f82
 https://stackoverflow.com/questions/53253793/kubernetes-ingress-with-minikube
 https://stackoverflow.com/questions/51243717/no-ingress-address-on-minikube-kubernetes-cluster-with-nginx-ingress-controller

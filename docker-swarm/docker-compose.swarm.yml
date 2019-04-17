@@ -3,7 +3,6 @@ version: "3"
 services:
   db:
     image: postgres:latest
-    restart: always
     ports:
       - 21445:5432
     environment:
@@ -13,11 +12,10 @@ services:
     volumes:
       - ./db_data:/var/lib/postgresql/data
     deploy:
-      replicas: 1
+      replicas: 2
 
   adminer:
     image: adminer
-    restart: always
     ports: 
       - 22445:8080
     environment:
@@ -27,7 +25,6 @@ services:
 
   backend:
     image: dgaydukov/backend
-    restart: always
     ports: 
       - 21556:3000
     environment:
@@ -38,12 +35,13 @@ services:
       - DB_NAME=backend
       - DB_USERNAME=user
       - DB_PASSWORD=password
+    deploy:
+      replicas: 2
     depends_on: 
       - db
 
   frontend:
     image: dgaydukov/frontend
-    restart: always
     ports: 
       - 18577:80
     environment:
@@ -51,3 +49,5 @@ services:
       - API_BASE_URL=http://localhost:21555/v1
       - COOKIE_USER_ID_NAME=userId
       - COOKIE_AUTH_TOKEN_NAME=accessToken
+    deploy:
+      replicas: 3
