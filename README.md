@@ -16,14 +16,14 @@ Here we have a simple app to manage notes. So you have `title`, `desc`, `date`. 
 Since the project includes 3 tools, you should run all of them
 ```shell
 # run docker compose
-docker-compose up -d
+cd docker-compose/ && docker-compose up -d --build
 
 # run docker swarm
-docker swarm init
+cd docker-swarm/ && docker swarm init
 
 # run kubernetes with minikube
 minikube start
-kubectl apply kuber.yaml
+kubectl apply ./kubernetes/kuber.yaml
 ```
 
 
