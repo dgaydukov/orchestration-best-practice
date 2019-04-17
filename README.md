@@ -17,17 +17,23 @@ This project assumes, that you have already `docker` installed.
 `docker-compose` can work without images, you just pass directory and it builds image from source code. For swarm and kubernetes we need to set images from docker registry. We can push our images to [public repository](https://hub.docker.com/).
 Build and push repos: 
 ```shell
-
+# login to hub.docker.com
 docker login --username=dgaydukov
 
 cd backend/
+# build backend image
 docker build . -t dgaydukov/backend
+# upload backend image to hub
 docker push dgaydukov/backend
 
 cd frontned/
+# build frontend image
 docker build . -t dgaydukov/frontend
+# upload frontend image to hub
 docker push dgaydukov/frontend
 ```
+
+So we have 2 images `dgaydukov/backend` and `dgaydukov/frontend` that we are going to use in our swarm and kubernetes deployment.
 
 ### Types of orchestration
 
