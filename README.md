@@ -72,10 +72,16 @@ docker service ls
 ```
 
 ###### Kubernetes
+
+This part assumed, that you have installed `minikube` and `kubectl`.
+
 ```shell
-# run kubernetes with minikube
+cd kubernetes
+
+# start local version of kubernetes
 minikube start
-kubectl apply ./kubernetes/config.yaml
+
+kubectl apply -f config.yml
 ```
 
 ### Authors
