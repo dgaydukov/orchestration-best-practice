@@ -36,6 +36,9 @@ At first we have to convert your docker insto swarm mode.
 cd docker-swarm
 # init swarm mode
 docker swarm init
+
+# dedploy services
+docker stack up -c docker-swarm.yml note
 ```
 
 ###### Kubernetes

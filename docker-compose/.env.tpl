@@ -1,4 +1,3 @@
-DB_HOST=localhost
 DB_USERNAME=user
 DB_PASSWORD=password
 DB_NAME=backend
