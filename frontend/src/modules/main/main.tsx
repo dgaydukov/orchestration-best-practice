@@ -10,6 +10,8 @@ interface IProps {
 }
 
 class Main extends React.PureComponent<IProps, any, any>{
+    state: any;
+    
     constructor(props){
         super(props);
 
@@ -28,7 +30,6 @@ class Main extends React.PureComponent<IProps, any, any>{
     }
 
     changeState(e){
-        console.log(this.state)
         this.state[e.target.name] = e.target.value;
     }
 
@@ -75,7 +76,7 @@ class Main extends React.PureComponent<IProps, any, any>{
     }
 
     async update(id: string){
-        const state = this.props.notes.find(k=>k.id===id);
+        const state = this.props.notes.find((k: any)=>k.id===id);
         this.setState(state);
     }
 
@@ -85,16 +86,16 @@ class Main extends React.PureComponent<IProps, any, any>{
             request = await updateNote(this.state.id, this.state);
         }
         else{
-            request = await createNote(this.state)
+            request = await createNote({title: this.state.title, desc: this.state.desc});
         }
         if(request.status === 200){
             alert(`Saved item with id: ${request.data.id}`);
+            this.props.getAllNotes();
             this.setState({
                 id: null,
                 title: "",
                 desc: "",
             });
-            this.props.getAllNotes();
         }
     }
 
