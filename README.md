@@ -2,36 +2,52 @@
 
 ## Content
 * [Description](#description)
-* [Installation](#installation)
+* [Types of orchestration](#types-of-orchestration)
 * [Authors](#authors)
 
 ### Description
 
 In this project, I'm going to show container orchestratiton with docker compose for local development, docker swarm for simple projects and kubernetes for production.
 Here we have a simple app to manage notes. So you have `title`, `desc`, `date`. You can add, modify and delete notes.
+This project assumes, that you have already `docker` installed.
 
+### Types of orchestration
 
-### Installation
+In this project we will take a look at 3 most common types of container orchestrations:
 
-Since the project includes 3 tools, you should run all of them
+* Docker compose
+* Docker swarm
+* Kubernetes
+
+###### Docker compose
+
+This is the most simple way of orchestration. You just put all your images in one file and run them.
+
 ```shell
+cd docker-compose
 # run docker compose
-cd docker-compose/ && docker-compose up -d --build
-
-# run docker swarm
-cd docker-swarm/ && docker swarm init
-
-# run kubernetes with minikube
-minikube start
-kubectl apply ./kubernetes/kuber.yaml
+docker-compose up -d --build
 ```
 
+###### Docker swarm
+
+At first we have to convert your docker insto swarm mode.
+```shell
+cd docker-swarm
+# init swarm mode
+docker swarm init
+```
+
+###### Kubernetes
+```shell
+# run kubernetes with minikube
+minikube start
+kubectl apply ./kubernetes/config.yaml
+```
 
 ### Authors
 
 * **Gaydukov Dmitiry** - *Take a look* - [How to become a Senior Javascript Developer](https://github.com/dgaydukov/how-to-become-a-senior-js-developer)
-
-
 
 ### Plan
 
