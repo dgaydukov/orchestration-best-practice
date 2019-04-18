@@ -73,13 +73,15 @@ docker service ls
 
 ###### Kubernetes
 
-This part assumed, that you have installed `minikube` and `kubectl`.
+This part assumed, that you have installed `minikube` and `kubectl`. Also take a look at this [cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/) if you forget some commands.
 
 ```shell
 cd kubernetes
 
 # start local version of kubernetes
 minikube start
+# check status of minikube
+minikube status
 
 kubectl apply -f config.yml
 ```
@@ -89,8 +91,13 @@ kubectl apply -f config.yml
 * **Gaydukov Dmitiry** - *Take a look* - [How to become a Senior Javascript Developer](https://github.com/dgaydukov/how-to-become-a-senior-js-developer)
 
 ### Plan
-
-1. Run simple nginx image with minikube and ingress
-https://medium.com/@Oskarr3/setting-up-ingress-on-minikube-6ae825e98f82
-https://stackoverflow.com/questions/53253793/kubernetes-ingress-with-minikube
-https://stackoverflow.com/questions/51243717/no-ingress-address-on-minikube-kubernetes-cluster-with-nginx-ingress-controller
+```
+1. Add gotemplate to swarm (or any other template engine)
+2. Add ingress controller to swarm
+3. Add gotemplate to kubernetes
+4. Add ingress controller to kubernetes
+5. Add container scanning tools
+6. Add service mesh
+7. Add hashicorp vault
+8. Add helm
+```
