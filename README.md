@@ -87,7 +87,11 @@ minikube start
 # check status of minikube
 minikube status
 
+# run deployment & services
 kubectl apply -f config.yml
+
+# check created containers
+kubectl get all
 ```
 
 ### Authors

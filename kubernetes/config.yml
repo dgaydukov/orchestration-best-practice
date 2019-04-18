@@ -3,14 +3,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-deployment
-  labels:
-    app: backend
+  name: backend
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: backend
+  replicas: 1
   template:
     metadata:
       labels:
@@ -20,46 +18,46 @@ spec:
       - name: backend
         image: dgaydukov/backend
         ports:
-        - containerPort: 80
+        - containerPort: 3000
         env:
         - name: APP_PORT
           value: "3000"
         - name: API_VERSION
           value: "v1"
         - name: DB_HOST
-          value: "db"
+          value: "127.0.0.1"
         - name: DB_PORT
-          value: "5432"
+          value: "21444"
         - name: DB_NAME
           value: "backend"
         - name: DB_USERNAME
           value: "user"
         - name: DB_PASSWORD
           value: "password"
-
+---
 # backend service
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-deployment
+  name: backend-svc
   labels:
-    run: backend-deployment
+    run: backend
 spec:
   ports:
-  - port: 80
+  - port: 3000
     protocol: TCP
   selector:
-    run: backend-deployment
-
+    run: backend
+---
 # frontend deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
+  name: frontend
   labels:
     app: frontend
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -82,17 +80,17 @@ spec:
           value: "userId"
         - name: COOKIE_AUTH_TOKEN_NAME
           value: "accessToken"
-
+---
 # frontend service
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-deployment
+  name: frontend-svc
   labels:
-    run: frontend-deployment
+    run: frontend
 spec:
   ports:
   - port: 80
     protocol: TCP
   selector:
-    run: frontend-deployment
+    run: frontend
