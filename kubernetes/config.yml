@@ -21,6 +21,21 @@ spec:
         image: dgaydukov/backend
         ports:
         - containerPort: 80
+        env:
+        - name: APP_PORT
+          value: "3000"
+        - name: API_VERSION
+          value: "v1"
+        - name: DB_HOST
+          value: "db"
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_NAME
+          value: "backend"
+        - name: DB_USERNAME
+          value: "user"
+        - name: DB_PASSWORD
+          value: "password"
 
 # backend service
 apiVersion: v1
@@ -58,6 +73,15 @@ spec:
         image: dgaydukov/frontend
         ports:
         - containerPort: 80
+        env:
+        - name: ENV_TYPE
+          value: "kubernetes"
+        - name: API_BASE_URL
+          value: "http://localhost:21556/v1"
+        - name: COOKIE_USER_ID_NAME
+          value: "userId"
+        - name: COOKIE_AUTH_TOKEN_NAME
+          value: "accessToken"
 
 # frontend service
 apiVersion: v1
