@@ -54,6 +54,8 @@ cd docker-compose
 docker-compose up -d --build
 ```
 
+Go to `http://localhost:18576` to check it out.
+
 ###### Docker swarm
 
 Swarm is the orchestration tool for docker. It's very simple to use, especially if you are familiar with `docker` and `docker-compose`. You can run swarm almost the same way you run `docker-compose`, and even their config files look similar.
@@ -70,6 +72,8 @@ docker stack up -c docker-compose.swarm.yml noteapp
 # view created services
 docker service ls
 ```
+
+Go to `http://127.0.0.1:18577` to check it out.
 
 ###### Kubernetes
 
